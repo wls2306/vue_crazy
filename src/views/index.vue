@@ -1,18 +1,38 @@
 <!-- 主页 -->
 <template>
   <div class='main'>
-   
-<el-container>
-  <el-header height='80px'>
-    <div id="title">
-        疯狂猜图Online 管理中心
-    </div>
-  </el-header>
+
+<!-- <el-container>
+  <el-aside width="200px">Aside</el-aside>
   <el-container>
-    <el-aside width="200px">Aside</el-aside>
+    <el-header>Header</el-header>
     <el-main>Main</el-main>
-    </el-container>
-     <el-footer>Footer</el-footer>
+  </el-container>
+</el-container> -->
+
+
+<el-container>
+  <el-aside width="200px" id="logo">
+    <div id="logo">
+      <img src="../assets/logo.png" width="100px" height="64px" >
+    </div>
+    
+
+
+    
+  </el-aside>
+  <el-container>
+    <el-header height='80px'>
+      <div id="title">
+        <span>
+            疯狂猜图Online 管理中心
+        </span>
+      </div>
+    </el-header>
+    <el-main>Main</el-main>
+    <el-footer></el-footer>
+     
+  </el-container>
 </el-container>
 
   </div>
@@ -50,11 +70,18 @@
   }
 </script>
 <style scoped>
+ 
+
+  #logo{
+    padding-top: 3px;
+  }
 
   #title{
-    position:absolute;
-    vertical-align: center;
-    font-size: 30px;
+    text-align: left;
+    margin-left: 20px;
+    line-height: 70px;
+    font-size: 25px;
+    color: white;
   }
 
 
@@ -67,11 +94,11 @@
   
   .el-aside {
 
-    height:85vh;
+    height:100vh;
     background-color: #D3DCE6;
     color: #333;
     text-align: center;
-    line-height: 200px;
+    /* line-height: 200px; */
   }
   
   .el-main {
