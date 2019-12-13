@@ -70,6 +70,8 @@ import qs from 'qs'
                        message:'登录成功',
                        type:'success'
                    })
+
+                   this.$router.push('/index')
                }else{
                     this.$message({
                        message:'用户名密码错误或权限不足',
