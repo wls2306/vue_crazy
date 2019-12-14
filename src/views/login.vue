@@ -101,8 +101,15 @@ import qs from 'qs'
   }
 </script>
 <style scoped>
+   
+
     #main{
         text-align: center;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        background-color: #2D3A4B;
     }
 
     .loginTtile{
@@ -112,11 +119,12 @@ import qs from 'qs'
     }
 
     #loginFrame{
-        box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+        background-color: #ffffff;
+        box-shadow: 12px 12px 2px 1px #ffffFF(0, 0, 255, .2);
         position:absolute;
         top:15%;
         left:35%;
-        border: 1px solid black;
+        border: 1px solid #ffffff;
         border-radius: 20px;
         margin:0 auto;
         width: 600px;

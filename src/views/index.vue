@@ -12,25 +12,69 @@
 
 
 <el-container>
-  <el-aside width="200px" id="logo">
-    <div id="logo">
-      <img src="../assets/logo.png" width="100px" height="64px" >
+  <el-aside width="250px" id="">
+    <div class="aside">
+      <div id="logo">
+        <img src="../assets/logo.png" width="100px" height="64px" >
+      </div>
+      <div style="margin-top:10px">疯狂猜图Online管理中心</div>
+
+     
+
+      <div id="menu">
+        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"  background-color="#304156" text-color="#fff"
+        active-text-color=rgb(64,158,255) router>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span slot="title">管理中心</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/index/user">
+                <i class="el-icon-user-solid"></i>
+                用户管理
+              </el-menu-item>
+              <el-menu-item index="1-2">
+                <i class="el-icon-s-promotion"></i>
+                关卡管理
+              </el-menu-item>
+              <el-menu-item index="1-3">
+                <i class="el-icon-s-shop"></i>
+                商城管理
+                </el-menu-item>
+              <el-menu-item index="1-4">
+                <i class="el-icon-s-ticket"></i>
+                DLC管理
+                </el-menu-item>
+            </el-menu-item-group>
+          
+          </el-submenu>
+          
+        </el-menu>
+      </div>
+
+        <!-- <div style="font-size:10px; margin-top:200px;">欢迎您: wangleishu [ 注销 ]</div> -->
+
     </div>
-    
-
-
-    
+  
   </el-aside>
   <el-container>
-    <el-header height='80px'>
+     <el-header height='50px'>
       <div id="title">
-        <span>
-            疯狂猜图Online 管理中心
-        </span>
+        欢迎您：
+        
+          <el-avatar icon="el-icon-user-solid" size='small'></el-avatar> 
+     
+         wangleishu 
+        <el-button type="primary" size="mini">注销</el-button>
       </div>
-    </el-header>
-    <el-main>Main</el-main>
-    <el-footer></el-footer>
+    </el-header> 
+    <el-main>
+      <transition name="fade">
+       <router-view></router-view>
+      </transition>
+    </el-main>
+    <!-- <el-footer></el-footer> -->
      
   </el-container>
 </el-container>
@@ -55,7 +99,14 @@
     //监控data中的数据变化
     watch: {},
     //方法集合
-    methods: {},
+    methods: {
+       handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {},
     //生命周期 - 挂载完成（可以访问DOM元素）
@@ -73,20 +124,40 @@
  
 
   #logo{
-    padding-top: 3px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    
   }
 
   #title{
-    text-align: left;
-    margin-left: 20px;
-    line-height: 70px;
-    font-size: 25px;
+    vertical-align: text-bottom;
+    text-align: right;
+    margin-right: 20px;
+    font-size: 12px;
+    color: black;
+  }
+
+  .aside{
     color: white;
+  }
+
+  #menu{
+    color: #ffffff;
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+
+  .el-menu{
+    border-right: 0px;
+  }
+
+  el-menu-item{
+    background-color: #1F2D3D;
   }
 
 
   .el-header, .el-footer {
-    background-color: #B3C0D1;
+    background-color: #ffffff;
     color: #333;
     text-align: center;
     line-height: 60px;
@@ -95,8 +166,8 @@
   .el-aside {
 
     height:100vh;
-    background-color: #D3DCE6;
-    color: #333;
+    background-color: #304156;
+    color: #304156;
     text-align: center;
     /* line-height: 200px; */
   }
