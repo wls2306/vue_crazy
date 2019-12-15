@@ -1,6 +1,6 @@
 # vue_crazy
 
-> A Vue.js project
+> 疯狂猜图Online 后台管理系统
 
 ## Build Setup
 
