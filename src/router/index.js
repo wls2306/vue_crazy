@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '@/views/login'
 import index from '@/views/index'
 import user from '@/components/user'
+import level from '@/components/level'
+import shop from '@/components/shop'
 Vue.use(Router)
 
 export default new Router({
@@ -29,6 +31,14 @@ export default new Router({
         {
           path:'user',
           component:user
+        },
+        {
+          path:'level',
+          component: level
+        },
+        {
+          path:'shop',
+          component: shop
         }
       ]
      }

@@ -10,15 +10,15 @@
         <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%" >
             <el-table-column prop="userId" label="编号" width="180">
             </el-table-column>
-            <el-table-column prop="userName" label="用户名" width="180">
+            <el-table-column prop="userName" label="用户名" >
             </el-table-column>
             <el-table-column prop="userLevel" label="等级" width="180">
             </el-table-column>
-            <el-table-column prop="userScore" label="积分">
+            <el-table-column prop="userScore" label="积分" width="180">
             </el-table-column>
-            <el-table-column prop="userCoin" label="金币">
+            <el-table-column prop="userCoin" label="金币" width="180">
             </el-table-column>
-            <el-table-column prop="userStatus" label="状态">
+            <el-table-column prop="userStatus" label="状态" width="180">
                 <template slot-scope="scope1">
                     <span v-if="scope1.row.userStatus === -1" style="color:red"> 封禁 </span>
                     <span v-else style="color:green"> 正常 </span>
@@ -32,7 +32,7 @@
                 <el-button @click=" handleOpenUserDialog(scope2.row.userName) " type="text" size="small">编辑</el-button>
                 <el-button v-if="scope2.row.userStatus === 1" @click=" banUser(scope2.row.userName) " type="text" size="small">封停</el-button>
                 <el-button v-else @click=" unblock(scope2.row.userName) " type="text" size="small">解封</el-button>
-                </el-popover>
+                
 
                 <!-- <el-button v-else @click=" handleOpenUserDialog(scope2.row.userName) " >解封</el-button> -->
             </template>

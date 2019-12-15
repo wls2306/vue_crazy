@@ -34,15 +34,15 @@
                 <i class="el-icon-user-solid"></i>
                 用户管理
               </el-menu-item>
-              <el-menu-item index="1-2">
+              <el-menu-item index="/index/level">
                 <i class="el-icon-s-promotion"></i>
                 关卡管理
               </el-menu-item>
-              <el-menu-item index="1-3">
+              <el-menu-item index="/index/shop">
                 <i class="el-icon-s-shop"></i>
                 商城管理
                 </el-menu-item>
-              <el-menu-item index="1-4">
+              <el-menu-item index="/index/dlc">
                 <i class="el-icon-s-ticket"></i>
                 DLC管理
                 </el-menu-item>
