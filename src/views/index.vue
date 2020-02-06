@@ -42,10 +42,10 @@
                 <i class="el-icon-s-shop"></i>
                 商城管理
                 </el-menu-item>
-              <el-menu-item index="/index/dlc">
+              <!-- <el-menu-item index="/index/dlc">
                 <i class="el-icon-s-ticket"></i>
                 DLC管理
-                </el-menu-item>
+                </el-menu-item> -->
             </el-menu-item-group>
           
           </el-submenu>
@@ -65,8 +65,8 @@
         
           <el-avatar icon="el-icon-user-solid" size='small'></el-avatar> 
      
-         wangleishu 
-        <el-button type="primary" size="mini">注销</el-button>
+         {{token}} 
+        <el-button type="primary" size="mini" @click="handleLogout">注销</el-button>
       </div>
     </el-header> 
     <el-main>
@@ -92,7 +92,9 @@
     components: {},
     data() {
       //这里存放数据
-      return {}
+      return {
+        token:''
+      }
     },
     //监听属性 类似于data概念
     computed: {},
@@ -105,12 +107,18 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      handleLogout(){
+        window.sessionStorage.removeItem('token');
+        this.$router.push('/login');
       }
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {},
     //生命周期 - 挂载完成（可以访问DOM元素）
-    mounted() {},
+    mounted() {
+      this.token=window.sessionStorage.getItem('token');
+    },
     beforeCreate() {}, //生命周期 - 创建之前
     beforeMount() {}, //生命周期 - 挂载之前
     beforeUpdate() {}, //生命周期 - 更新之前

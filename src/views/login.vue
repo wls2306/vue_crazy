@@ -71,6 +71,8 @@ import qs from 'qs'
                        type:'success'
                    })
 
+                   window.sessionStorage.setItem('token',resp.data.obj.userName);
+
                    this.$router.push('/index')
                }else{
                     this.$message({

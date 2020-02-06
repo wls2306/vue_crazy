@@ -28,10 +28,27 @@
             label="操作"
             width="200">
             <template slot-scope='scope2'>
-                <el-button @click=" handleOpenCommodityDialog(scope2.row.commodityId) " type="text" size="small">查看</el-button>
-                <el-button v-if="scope2.row.commodityStatus === '1'"  type="text" size="small">下架</el-button>
-                <el-button v-else  type="text" size="small">上架</el-button>
-                <el-button  type="text" size="small" @click="handleDelete(scope2.row.commodityId)">删除</el-button>
+
+                <el-tooltip class="item" effect="dark" content="编辑" placement="bottom">
+                   <el-button type="primary" icon="el-icon-edit" circle  @click="handleOpenCommodityDialog(scope2.row.commodityId)" ></el-button>
+                </el-tooltip>
+
+                 <el-tooltip class="item" effect="dark" content="下架" placement="bottom" v-if="scope2.row.commodityStatus === '1'" >
+                   <el-button type="warning" icon="el-icon-bottom" circle></el-button>
+                </el-tooltip>
+
+                <el-tooltip class="item" effect="dark" content="上架" placement="bottom" v-else>
+                    <el-button  type="warning" icon="el-icon-bottom" circle ></el-button>
+                </el-tooltip>
+                
+                <!-- <el-button v-if="scope2.row.commodityStatus === '1'"  type="text" size="small">下架</el-button> -->
+
+                <!-- <el-button v-else  type="text" size="small">上架</el-button> -->
+                 <el-tooltip class="item" effect="dark" content="删除" placement="bottom" >
+                    <el-button type="danger" icon="el-icon-close" circle  @click="handleDelete(scope2.row.commodityId)" ></el-button>
+                </el-tooltip>
+                
+                <!-- <el-button  type="text" size="small" @click="handleDelete(scope2.row.commodityId)">删除</el-button> -->
             </template>
             </el-table-column>
         </el-table>
@@ -76,6 +93,22 @@
             <el-input v-model="commodity.commodityImg" autocomplete="off" :readonly="!dialogIsUpdate"></el-input>
 
             <el-upload
+                class="upload-demo"
+                drag
+                action="https://jsonplaceholder.typicode.com/posts/"
+                multiple
+                :auto-upload="false"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :on-change="fileChange"
+                :before-upload="beforeAvatarUpload">
+                
+                <i class="el-icon-upload"></i>
+                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
+
+            <!-- <el-upload
                 class="avatar-uploader"
                 action="https://jsonplaceholder.typicode.com/posts/"
                 :auto-upload="false"
@@ -86,7 +119,7 @@
                 :before-upload="beforeAvatarUpload">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-            </el-upload>
+            </el-upload> -->
 
 
 
@@ -246,7 +279,7 @@
                     return;
                 }
                 this.commodity.file = file.raw;
-                console.log(this.file);
+                console.log(file);
             },
             handleSubmit:function(){
                
@@ -271,6 +304,7 @@
                         type:resp.data.result===true?'success':'error',
                         message:resp.data.message
                     })
+                    this.getData()
                 })
                 
             },
@@ -282,9 +316,9 @@
                 })
                 .then(()=>{
                     this.$axios({
-                    method:'DELETE',
+                    method:'delete',
                     url:this.GLOBAL.serverUrl+"commodity/",
-                    data:{
+                    params: {
                         id:id
                     }
                 })

@@ -27,12 +27,22 @@
             <el-table-column
             fixed="right"
             label="操作"
-            width="100">
+            width="200">
             <template slot-scope='scope2'>
-                <el-button @click=" handleOpenUserDialog(scope2.row.userName) " type="text" size="small">编辑</el-button>
-                <el-button v-if="scope2.row.userStatus === 1" @click=" banUser(scope2.row.userName) " type="text" size="small">封停</el-button>
-                <el-button v-else @click=" unblock(scope2.row.userName) " type="text" size="small">解封</el-button>
+
+                <el-tooltip class="item" effect="dark" content="编辑" placement="bottom">
+                   <el-button type="primary" icon="el-icon-edit" circle  @click=" handleOpenUserDialog(scope2.row.userName) " ></el-button>
+                </el-tooltip>
+
+                <el-tooltip class="item" effect="dark" content="封停" placement="bottom" v-if="scope2.row.userStatus === 1">
+                   <el-button type="danger" icon="el-icon-s-custom" circle  @click=" banUser(scope2.row.userName) " ></el-button>
+                </el-tooltip>
+
+                 <el-tooltip class="item" effect="dark" content="解封" placement="bottom" v-else>
+                   <el-button type="success" icon="el-icon-s-custom" circle  @click=" unblock(scope2.row.userName) " ></el-button>
+                </el-tooltip>
                 
+               
 
                 <!-- <el-button v-else @click=" handleOpenUserDialog(scope2.row.userName) " >解封</el-button> -->
             </template>
@@ -179,10 +189,31 @@
             handleUserDialog:function(){
                 if(this.updateInfo === true){
                     // 变更用户信息
-                     this.$message({
-                        type:'error',
-                        message:'功能未开发，敬请期待！'
+                      this.$axios({
+                        method:'put',
+                        url: this.GLOBAL.serverUrl+'user/',
+                        data:qs.stringify(
+                            this.user
+                        )
                     })
+                    .then((resp)=>{
+                        if(resp.data.result===true){
+                            this.$message({
+                                type: 'success',
+                                message: '修改成功'
+                            })
+                            this.userDialogVisable = false
+                            this.getData()
+                        }else{
+                            this.$message({
+                                type: 'error',
+                                message: '服务器异常'
+                            })
+                            this.userDialogVisable = false
+                        }
+                    })
+
+                    
                 }else{
                     // 添加用户信息
                     const that=this;

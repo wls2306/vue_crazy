@@ -8,8 +8,16 @@ import level from '@/components/level'
 import shop from '@/components/shop'
 Vue.use(Router)
 
-export default new Router({
+
+
+
+
+const router= new Router({
   routes: [
+    {
+      path:'/',
+      component:index
+    },
     {
       path: '/login',
       component: login,
@@ -44,3 +52,17 @@ export default new Router({
      }
   ]
 })
+
+//挂载路由导航守卫
+
+router.beforeEach((to,from,next)=>{
+  if(to.path === '/login') return next();
+
+   const tokenStr= window.sessionStorage.getItem('token')
+   if(!tokenStr) return next('/login')
+
+   next()
+
+})
+
+export default router
